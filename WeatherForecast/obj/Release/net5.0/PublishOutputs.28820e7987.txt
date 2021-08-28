@@ -1,0 +1,12 @@
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\WeatherForecast.exe
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\appsettings.json
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\WeatherForecast.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\WeatherForecast.deps.json
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\WeatherForecast.runtimeconfig.json
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\WeatherForecast.pdb
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.OpenApi.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Newtonsoft.Json.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
