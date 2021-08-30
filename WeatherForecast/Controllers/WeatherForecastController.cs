@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 using System.Threading.Tasks;
 using WeatherForecast.DataAccess;
 using WeatherForecast.Providers.Interface;
@@ -28,11 +29,14 @@ namespace WeatherForecast.Controllers
         {
             var deviceInfo = await _rain7DayinfoProvider.GetDeviceInfoAsync();
             if (deviceInfo != null)
+            {
+                var t = _weatherInfoDBContext.Weather.ToList();
                 return Ok(deviceInfo);
+            }
             return NotFound();
         }
 
-        [HttpGet("StationListWithID")]
+        [HttpGet("DeviceInfoWithID")]
         public async Task<IActionResult> GetDeviceInfoWithID([FromQuery(Name = "deviceID")] int deviceID)
         {
             var deviceInfo = await _rain7DayinfoProvider.GetDeviceInfoAsync(deviceID);

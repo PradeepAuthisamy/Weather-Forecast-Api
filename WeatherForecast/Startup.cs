@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WeatherForecast.DataAccess;
+using WeatherForecast.Providers;
+using WeatherForecast.Providers.Interface;
 using WeatherForecast.Services;
 using WeatherForecast.Services.Interface;
 
@@ -32,6 +34,7 @@ namespace WeatherForecast
             });
 
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+            services.AddScoped<IRain7DayInfoProvider, Rain7DayInfoProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

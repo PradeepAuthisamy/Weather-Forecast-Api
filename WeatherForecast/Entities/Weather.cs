@@ -89,6 +89,7 @@ namespace WeatherForecast.Entities
         [JsonProperty("original")]
         public string Original { get; set; }
     }
+
     public class Position
     {
         [JsonProperty("altitude")]
@@ -97,6 +98,7 @@ namespace WeatherForecast.Entities
         [JsonProperty("geo")]
         public Geo Geo { get; set; }
     }
+
     public class Rain24h
     {
         [JsonProperty("sum")]
@@ -123,6 +125,7 @@ namespace WeatherForecast.Entities
         [JsonProperty("vals")]
         public List<double> Vals { get; set; }
     }
+
     public class Weather
     {
         public List<WeatherInfo> WeatherInfo { get; set; }
