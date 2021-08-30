@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
+using WeatherForecast.DataAccess;
 using WeatherForecast.Services;
 
 namespace WeatherForecast
@@ -23,15 +22,14 @@ namespace WeatherForecast
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WeatherInfoDBContext>(options => options.
+                            UseSqlServer(Configuration.GetConnectionString("WeatherForecastConnString")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WeatherForecast", Version = "v1" });
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //c.IncludeXmlComments(xmlPath);
             });
-            
+
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
         }
 

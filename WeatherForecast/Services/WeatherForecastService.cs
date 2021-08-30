@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using WeatherForecast.DataAccess;
 using WeatherForecast.Handlers;
 using WeatherForecast.Models;
 
@@ -11,6 +12,13 @@ namespace WeatherForecast.Services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
+        private readonly WeatherInfoDBContext _weatherInfoDBContext;
+
+        public WeatherForecastService(WeatherInfoDBContext weatherInfoDBContext)
+        {
+            _weatherInfoDBContext = weatherInfoDBContext;
+        }
+
         public async Task<string> GetStations()
         {
             var httpHandler = new MetosHttpHandler(new HttpClientHandler())
@@ -22,8 +30,24 @@ namespace WeatherForecast.Services
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             var response = await httpClient.GetAsync("/user/stations");
-            var result = response.Content.ReadAsStringAsync().Result;
-            return result;
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                //var weatherInfo = new WeatherInfo
+                //{
+                //    Weather = "test"
+                //};
+                var data = JsonConvert.DeserializeObject<List<WeatherInfo>>(result);
+                var dt = new Weather
+                {
+                    WeatherInfo = data
+                };
+                //await _weatherInfoDBContext.Weather.AddAsync(data);
+                //await _weatherInfoDBContext.SaveChangesAsync();
+                return result;
+            }
+
+            return null;
         }
 
         public async Task<string> GetStationWithID(string stationID)
