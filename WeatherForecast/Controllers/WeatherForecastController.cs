@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WeatherForecast.DataAccess;
-using WeatherForecast.Services;
+using WeatherForecast.Providers.Interface;
 
 namespace WeatherForecast.Controllers
 {
@@ -13,39 +11,34 @@ namespace WeatherForecast.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly IWeatherForecastService _weatherForeCastService;
+        private readonly IRain7DayInfoProvider _rain7DayinfoProvider;
         private readonly WeatherInfoDBContext _weatherInfoDBContext;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger,
-            IWeatherForecastService weatherForeCastService, WeatherInfoDBContext weatherInfoDBContext)
+            WeatherInfoDBContext weatherInfoDBContext,
+            IRain7DayInfoProvider rain7DayinfoProvider)
         {
             _logger = logger;
-            _weatherForeCastService = weatherForeCastService;
             _weatherInfoDBContext = weatherInfoDBContext;
+            _rain7DayinfoProvider = rain7DayinfoProvider;
         }
 
-        [HttpGet("StationList")]
-        public async Task<IActionResult> Stations()
+        [HttpGet("DeviceInfo")]
+        public async Task<IActionResult> GetDeviceInfo()
         {
-            var result = null as List<WeatherInfo>; // await _weatherInfoDBContext.Weather.ToListAsync();
-            if (result == null || !result.Any())
-            {
-                var data = await _weatherForeCastService.GetStations();
-                if (data != null)
-                {
-                    return Ok(data);
-                }
-            }
-
+            var deviceInfo = await _rain7DayinfoProvider.GetDeviceInfoAsync();
+            if (deviceInfo != null)
+                return Ok(deviceInfo);
             return NotFound();
         }
 
         [HttpGet("StationListWithID")]
-        public async Task<IActionResult> StationWithID([FromQuery(Name = "stationID")] string stationID)
+        public async Task<IActionResult> GetDeviceInfoWithID([FromQuery(Name = "deviceID")] int deviceID)
         {
-            var result = await _weatherForeCastService.GetStationWithID(stationID);
-            if (result == null) return NotFound();
-            return Ok(result);
+            var deviceInfo = await _rain7DayinfoProvider.GetDeviceInfoAsync(deviceID);
+            if (deviceInfo != null)
+                return Ok(deviceInfo);
+            return NotFound();
         }
     }
 }

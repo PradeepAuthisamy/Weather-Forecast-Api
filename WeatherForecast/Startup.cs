@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WeatherForecast.DataAccess;
 using WeatherForecast.Services;
+using WeatherForecast.Services.Interface;
 
 namespace WeatherForecast
 {

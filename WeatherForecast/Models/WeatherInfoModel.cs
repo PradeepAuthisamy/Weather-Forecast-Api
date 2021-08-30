@@ -1,77 +1,35 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace WeatherForecast.Models
 {
-    public class WeatherInfoModel
+    public class Device
     {
-        [JsonProperty("name")]
-        public Name Name { get; set; }
+        public Device()
+        {
+            DeviceInformation = new List<DeviceInfo>();
+        }
 
-        [JsonProperty("rights")]
-        public string Rights { get; set; }
-
-        [JsonProperty("info")]
-        public Info Info { get; set; }
-
-        [JsonProperty("dates")]
-        public Dates Dates { get; set; }
-
-        [JsonProperty("position")]
-        public Position Position { get; set; }
+        public List<DeviceInfo> DeviceInformation { get; set; }
+        public bool HasNoData { get; set; }
     }
 
-    public class Name
+    public class DeviceInfo
     {
-        [JsonProperty("original")]
-        public string Original { get; set; }
-
-        [JsonProperty("custom")]
-        public string Custom { get; set; }
-    }
-
-    public class Info
-    {
-        [JsonProperty("device_id")]
-        public string DeviceID { get; set; }
-
-        [JsonProperty("device_name")]
+        public int DeviceID { get; set; }
         public string DeviceName { get; set; }
-
-        [JsonProperty("hardware")]
-        public string Hardware { get; set; }
-
-        [JsonProperty("firmware")]
-        public string Firmware { get; set; }
+        public double Firmware { get; set; }
+        public double Hardware { get; set; }
+        public Rain7Dayinfo Rain7DayInfo { get; set; }
     }
 
-    public class Dates
+    public class Rain7Dayinfo
     {
-        [JsonProperty("min_date")]
-        public string MinDate { get; set; }
+        public Rain7Dayinfo()
+        {
+            Vals = new List<double>();
+        }
 
-        [JsonProperty("max_date")]
-        public string MaxDate { get; set; }
-
-        [JsonProperty("created_at")]
-        public string CreatedAt { get; set; }
-
-        [JsonProperty("last_communication")]
-        public string LastCommunication { get; set; }
-    }
-
-    public class Position
-    {
-        [JsonProperty("altitude")]
-        public string Altitude { get; set; }
-
-        [JsonProperty("geo")]
-        public Geo Geo { get; set; }
-    }
-
-    public class Geo
-    {
-        [JsonProperty("coordinates")]
-        public List<string> Coordinates { get; set; }
+        public double Sum { get; set; }
+        public List<double> Vals { get; set; }
     }
 }

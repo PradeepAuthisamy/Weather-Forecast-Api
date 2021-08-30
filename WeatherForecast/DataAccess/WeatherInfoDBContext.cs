@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace WeatherForecast.DataAccess
 {
@@ -9,6 +8,12 @@ namespace WeatherForecast.DataAccess
         {
         }
 
-        public DbSet<Weather> Weather { get; set; }
+        //public DbSet<Weather> Weather { get; set; }
+
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    builder.Entity<Weather>().ToTable("Weather");
+        //    builder.Entity<Geo>().ToTable("Geo");
+        //}
     }
 }
