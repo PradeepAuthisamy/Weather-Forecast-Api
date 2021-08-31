@@ -16,28 +16,30 @@ namespace WeatherForecast.Models
 
     public class DeviceInfo
     {
+        public int? DeviceID { get; set; }
+
+        public string DeviceName { get; set; }
+
+        public double? Firmware { get; set; }
+
+        public double? Hardware { get; set; }
+
         [Key]
         public string Name { get; set; }
-
-        public int? DeviceID { get; set; }
-        public string DeviceName { get; set; }
-        public double? Firmware { get; set; }
-        public double? Hardware { get; set; }
         public Rain7Dayinfo Rain7DayInfo { get; set; }
     }
 
     public class Rain7Dayinfo
     {
-        [Key]
-        public string Name { get; set; }
-
-        public double? Sum { get; set; }
-        public List<double> Vals { get; set; }
-
         public Rain7Dayinfo()
         {
             Vals = new List<double>();
         }
+
+        public DeviceInfo DeviceInfo { get; set; }
+        public string Name { get; set; }
+        public double? Sum { get; set; }
+        public List<double> Vals { get; set; }
     }
 
     public class Values

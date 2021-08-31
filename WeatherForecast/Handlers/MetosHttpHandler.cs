@@ -14,6 +14,7 @@ namespace WeatherForecast.Handlers
     {
         private static readonly Uri _apiBaseAddress = new("https://api.fieldclimate.com/v1");
         private static readonly CultureInfo _enUsCulture = new("en-us");
+
         public MetosHttpHandler(HttpMessageHandler handler)
         {
             base.InnerHandler = handler;
@@ -23,6 +24,7 @@ namespace WeatherForecast.Handlers
         public Uri ApiUri { get; set; }
         public string PrivateKey { get; set; }
         public string PublicKey { get; set; }
+
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var requestRoute = request.RequestUri.AbsolutePath;

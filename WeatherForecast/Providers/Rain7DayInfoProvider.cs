@@ -20,7 +20,7 @@ namespace WeatherForecast.Providers
             _weatherInfoDBContext = weatherInfoDBContext;
         }
 
-        public async Task<string> GetDeviceInfoAsync()
+        public async Task<string> GetDeviceInfoAsync(bool isDBCallEnabled)
         {
             var result = await _weatherForeCastService.GetStations();
 
@@ -49,56 +49,68 @@ namespace WeatherForecast.Providers
                     }
                 }).ToList()
             };
-            foreach (var deviceInfo in device.DeviceInformation)
-            {
-                //await _weatherInfoDBContext.Weather.AddAsync(deviceInfo);
-                //await _weatherInfoDBContext.SaveChangesAsync();
-            }
 
+            if (isDBCallEnabled)
+            {
+                var t = _weatherInfoDBContext.Weather.ToList();
+                _weatherInfoDBContext.Weather.RemoveRange(t.ToArray());
+                await _weatherInfoDBContext.SaveChangesAsync();
+
+                foreach (var deviceInfo in device.DeviceInformation)
+                {
+                    await _weatherInfoDBContext.Weather.AddAsync(deviceInfo);
+                    await _weatherInfoDBContext.SaveChangesAsync();
+                }
+            }
             return JsonConvert.SerializeObject(device);
         }
 
-        public async Task<string> GetDeviceInfoAsync(int deviceID)
-        {
-            var result = await _weatherForeCastService.GetStations();
-            
-            var device = new Device();
-            if (result == null && result.WeatherInfo == null)
-            {
-                device.HasNoData = true;
-                return JsonConvert.SerializeObject(device);
-            }
+        //public async Task<string> GetDeviceInfoAsync(int deviceID)
+        //{
+        //    var result = await _weatherForeCastService.GetStations();
 
-            var filteredWithDeviceID = result.WeatherInfo.Where(wi => wi.Info.DeviceId == deviceID).Select(x=>x);
-            if (filteredWithDeviceID == null)
-            {
-              device = new Device
-                {
-                    HasNoData = false
-                };
-                return JsonConvert.SerializeObject(device);
-            }
+        //    var device = new Device();
+        //    if (result == null && result.WeatherInfo == null)
+        //    {
+        //        device.HasNoData = true;
+        //        return JsonConvert.SerializeObject(device);
+        //    }
 
-            device = new Device
-            {
-                HasNoData = false,
-                DeviceInformation = filteredWithDeviceID.Where(wi => wi.Info.DeviceId == deviceID).Select(x => new DeviceInfo
-                {
-                    Name = x.Name.Original,
-                    DeviceName = x.Info.DeviceName,
-                    DeviceID = x.Info?.DeviceId,
-                    Firmware = x.Info?.Firmware,
-                    Hardware = x.Info?.Hardware,
-                    Rain7DayInfo = new Rain7Dayinfo
-                    {
-                        Name = x.Name.Original,
-                        Sum = x.Meta?.Rain7d?.Sum,
-                        Vals = x.Meta?.Rain7d?.Vals
-                    }
-                }).ToList()
-            };
+        //    var filteredWithDeviceID = result.WeatherInfo.Where(wi => wi.Info.DeviceId == deviceID).Select(x => x);
+        //    if (filteredWithDeviceID == null || !filteredWithDeviceID.Any())
+        //    {
+        //        device = new Device
+        //        {
+        //            HasNoData = false
+        //        };
+        //        return JsonConvert.SerializeObject(device);
+        //    }
 
-            return JsonConvert.SerializeObject(device);
-        }
+        //    device = new Device
+        //    {
+        //        HasNoData = false,
+        //        DeviceInformation = filteredWithDeviceID.Where(wi => wi.Info.DeviceId == deviceID).Select(x => new DeviceInfo
+        //        {
+        //            Name = x.Name.Original,
+        //            DeviceName = x.Info.DeviceName,
+        //            DeviceID = x.Info?.DeviceId,
+        //            Firmware = x.Info?.Firmware,
+        //            Hardware = x.Info?.Hardware,
+        //            Rain7DayInfo = new Rain7Dayinfo
+        //            {
+        //                Name = x.Name.Original,
+        //                Sum = x.Meta?.Rain7d?.Sum,
+        //                Vals = x.Meta?.Rain7d?.Vals
+        //            }
+        //        }).ToList()
+        //    };
+
+        //    foreach (var deviceInfo in device.DeviceInformation)
+        //    {
+        //        await _weatherInfoDBContext.Weather.AddAsync(deviceInfo);
+        //        await _weatherInfoDBContext.SaveChangesAsync();
+        //    }
+        //    return JsonConvert.SerializeObject(device);
+        //}
     }
 }
