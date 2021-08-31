@@ -20,14 +20,21 @@ namespace WeatherForecast.DataAccess
                             .Ignore(e => e.Vals);
             //builder.Entity<Rain7Dayinfo>()
             //.HasOne(i => i.Name)
-            //             .WithMany()
+            //             .WithOne()
             //             .HasForeignKey(i => i.Name)
             //             .OnDelete(DeleteBehavior.Cascade);
-            //builder.Entity<DeviceInfo>()
-            //.HasOne(i => i.Rain7DayInfo)
-            //             .WithMany()
-            //             .HasForeignKey(i=>i.Name)
+            //builder.Entity<Device>()
+            //.HasMany(i => i.DeviceInformation)
+            //             .WithOne(s=>s.Rain7DayInfo)
+            //             .HasForeignKey<DeviceInfo>(i => i.)
             //             .OnDelete(DeleteBehavior.Cascade);
+            builder
+       .Entity<DeviceInfo>()
+       .HasOne(x => x.Rain7DayInfo)
+       .WithOne(x => x.DeviceInfo)
+       .HasForeignKey<Rain7Dayinfo>(c => c.Name)       
+       .OnDelete(DeleteBehavior.Cascade);
+
 
             base.OnModelCreating(builder);
         }

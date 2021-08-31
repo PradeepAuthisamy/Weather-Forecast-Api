@@ -39,7 +39,11 @@ namespace WeatherForecast.Controllers
             if (deviceInfo != null && isDBCallEnabled)
             {
                 var data = _weatherInfoDBContext.Weather.ToList();
-                var jsonResult = JsonConvert.SerializeObject(data);
+                var jsonResult = JsonConvert.SerializeObject(data, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
                 return Ok(jsonResult);
             }
             else
@@ -57,7 +61,11 @@ namespace WeatherForecast.Controllers
             if (deviceInfo != null && isDBCallEnabled)
             {
                 var data = _weatherInfoDBContext.Weather.Where(x => x.DeviceID == deviceID).ToList();
-                var jsonResult = JsonConvert.SerializeObject(data);
+                var jsonResult = JsonConvert.SerializeObject(data, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
                 return Ok(jsonResult);
             }
             else

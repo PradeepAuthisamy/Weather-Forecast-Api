@@ -62,7 +62,11 @@ namespace WeatherForecast.Providers
                     await _weatherInfoDBContext.SaveChangesAsync();
                 }
             }
-            return JsonConvert.SerializeObject(device);
+            return JsonConvert.SerializeObject(device, Formatting.None,
+                        new JsonSerializerSettings()
+                        {
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        });
         }
 
         //public async Task<string> GetDeviceInfoAsync(int deviceID)

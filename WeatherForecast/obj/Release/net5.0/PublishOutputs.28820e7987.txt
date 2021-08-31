@@ -11,6 +11,8 @@ D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Ou
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.Extensions.DependencyInjection.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.FeatureManagement.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.FeatureManagement.AspNetCore.dll
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.Identity.Client.dll
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
