@@ -32,6 +32,7 @@ namespace WeatherForecast
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherForecast V1"));
             }
+            app.UseCors(options => options.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
@@ -49,17 +50,16 @@ namespace WeatherForecast
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddFeatureManagement();
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy(MyAllowSpecificOrigins,
-            //    builder =>
-            //    {
-            //        builder.WithOrigins("http://example.com",
-            //                            "http://www.contoso.com")
-            //                            .AllowAnyHeader()
-            //                            .AllowAnyMethod();
-            //    });
-            //});
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
             services.AddDbContext<WeatherInfoDBContext>(options => options.
                             UseSqlServer(Configuration.GetConnectionString("WeatherForecastConnString")));
             services.AddControllers();

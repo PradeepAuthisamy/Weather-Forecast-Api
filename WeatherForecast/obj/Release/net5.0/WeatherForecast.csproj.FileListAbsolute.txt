@@ -61,3 +61,4 @@ D:\Pradeep\Projects\WeatherForecast\WeatherForecast\bin\Release\net5.0\runtimes\
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\bin\Release\net5.0\appsettings.Production.json
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\bin\Release\net5.0\Microsoft.FeatureManagement.dll
 D:\Pradeep\Projects\WeatherForecast\WeatherForecast\bin\Release\net5.0\Microsoft.FeatureManagement.AspNetCore.dll
+D:\Pradeep\Projects\WeatherForecast\WeatherForecast\obj\Release\net5.0\WeatherForecast.csproj.AssemblyReference.cache
