@@ -10,8 +10,8 @@ using WeatherForecast.DataAccess;
 namespace WeatherForecast.Migrations
 {
     [DbContext(typeof(WeatherInfoDBContext))]
-    [Migration("20210831042728_V7")]
-    partial class V7
+    [Migration("20210906112755_Rims_DeviceInfo")]
+    partial class Rims_DeviceInfo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

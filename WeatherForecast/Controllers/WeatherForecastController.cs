@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.FeatureManagement;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WeatherForecast.DataAccess;
@@ -19,6 +18,7 @@ namespace WeatherForecast.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IRain7DayInfoProvider _rain7DayinfoProvider;
         private readonly WeatherInfoDBContext _weatherInfoDBContext;
+
         public WeatherForecastController(ILogger<WeatherForecastController> logger,
             WeatherInfoDBContext weatherInfoDBContext,
             IRain7DayInfoProvider rain7DayinfoProvider,

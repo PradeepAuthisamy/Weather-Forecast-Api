@@ -2,7 +2,7 @@
 
 namespace WeatherForecast.Migrations
 {
-    public partial class V7 : Migration
+    public partial class Rims_DeviceInfo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

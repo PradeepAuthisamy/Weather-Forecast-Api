@@ -23,10 +23,11 @@ namespace WeatherForecast.Models
         public double? Firmware { get; set; }
 
         public double? Hardware { get; set; }
+
         [Key]
         public string Name { get; set; }
-        public Rain7Dayinfo Rain7DayInfo { get; set; }
 
+        public Rain7Dayinfo Rain7DayInfo { get; set; }
     }
 
     public class Rain7Dayinfo
@@ -34,10 +35,13 @@ namespace WeatherForecast.Models
         public Rain7Dayinfo()
         {
             Vals = new List<double>();
-        }        
+        }
+
         public DeviceInfo DeviceInfo { get; set; }
+
         [Key]
         public string Name { get; set; }
+
         public double? Sum { get; set; }
         public List<double> Vals { get; set; }
     }

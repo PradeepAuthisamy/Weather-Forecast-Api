@@ -11,6 +11,7 @@ namespace WeatherForecast.DataAccess
 
         public DbSet<Rain7Dayinfo> RainInfo { get; set; }
         public DbSet<DeviceInfo> Weather { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             ////    builder.Entity<DeviceInfo>().ToTable("Device");
@@ -32,9 +33,8 @@ namespace WeatherForecast.DataAccess
        .Entity<DeviceInfo>()
        .HasOne(x => x.Rain7DayInfo)
        .WithOne(x => x.DeviceInfo)
-       .HasForeignKey<Rain7Dayinfo>(c => c.Name)       
+       .HasForeignKey<Rain7Dayinfo>(c => c.Name)
        .OnDelete(DeleteBehavior.Cascade);
-
 
             base.OnModelCreating(builder);
         }
